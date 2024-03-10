@@ -10,6 +10,7 @@ import rehypeSlug from "rehype-slug";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://abobic.com",
   integrations: [
     swup({
       theme: "slide",

@@ -4,7 +4,7 @@ title: 'Collaboration Spotting X'
 date: 2022-07-01
 teaser: 'Dynamic schema-based network analytics.'
 abstract: "I built the Collaboration Spotting X platform to provide experts with a way of easily interacting and modelling networks visually. I integrated concepts from information retrieval, network analysis, and visual analytics using React, MobX, and FastAPI. It's divided into multiple Docker containers to contain the client-side, server-side, MongoDB database and optionally Matomo, making it easy to develop and deploy. You can easily customize the settings and upload your own data sets as CSV files. Users can retrieve subsets data through an intuitive search interface."
-tags: ["project", "visual analytics", "data science", "frontend", "backend", "user studies"]
+tags: ["project", "React", "FastAPI", "PyTorch", "Three.js", "NetworkX", "Polars", "Mongo", "Elastic"]
 ---
 
 import {ImageGrid} from "../../components/ImageGrid.tsx";
@@ -46,7 +46,7 @@ Users can model retrieved data using the CSX schema designer without worrying ab
 <ImageGrid images={[{url: csx3.src, alt: "Collaboration Spotting X history", caption: "The CSX history view with a forked history on the top right and the Markdown comments panel on the bottom right."}]} key="csx-images" caption="The CSX history view with a forked history on the top right and the Markdown comments panel on the bottom right." client:load />
 
 ### Findings and Lessons Learned
-During the iterative development process, the concepts introduced in CSX were evaluated in multiple user studies using various tools, such as surveys, interaction data analysis as well as interviews. The results showed how CSX can support users by enabling them to easily retrieve and modify data as networks. These studies also provided a deeper insight into the usability aspect of CSX which could be used as a basis for building other similarly complex tools. If you're interested in using this project for your data analysis needs or would like to contribute, please don't hesitate to contact me. The full code can be seen on the [GitHub page](https://github.com/aleksbobic/csx "take me to the GitHub page").
+During the iterative development process, the concepts introduced in CSX were evaluated in multiple user studies using various tools, such as surveys, interaction data analysis as well as interviews. The results showed how CSX can support users by enabling them to easily retrieve and modify data as networks. These studies also provided a deeper insight into the usability aspect of CSX which could be used as a basis for building other similarly complex tools. If you're interested in using this project for your data analysis needs or would like to contribute, please don't hesitate to contact me. The full code can be seen on the [GitHub page](https://github.com/aleksbobic/csx "take me to the GitHub page"). Additionally you can visit the [project webpage](https://github.com/aleksbobic/csx "take me to the project page") to read more about CSX.
 
 ### Papers
 In addition to the creation of Collaboration Spotting X this project also resulted in multiple papers listed below as well as a master thesis as part of which I acted as a co-supervisor.

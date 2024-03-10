@@ -1,0 +1,11 @@
+---
+const props = Astro.props;
+---
+
+<div class="w-full overflow-x-scroll dark:bg-gray-800 bg-gray-200 p-4 rounded-lg my-6 max-w-3xl">
+<div class="overflow-x-scroll">
+<table {...props} class="w-full overflow-x-scroll [&>thead]:font-semibold dark:[&>thead]:bg-gray-900/70 [&>thead]:bg-black/10 [&>thead>tr>th]:px-2 [&>thead>tr>th]:text-left [&>thead>tr>th:first-child]:rounded-tl-md [&>thead>tr>th:first-child]:rounded-bl-md [&>thead>tr>th:last-child]:rounded-tr-md [&>thead>tr>th:last-child]:rounded-br-md [&>thead>tr>th]:py-2 [&>tbody]:before:content-[''] [&>tbody]:before:h-2 [&>tbody]:before:block [&>tbody>tr>td]:p-2 [&>tbody>tr>td]:border-b-[1px] dark:[&>tbody>tr>td]:border-gray-700 [&>tbody>tr>td]:border-gray-300 dark:[&>tbody>tr:last-child>td]:border-transparent [&>tbody>tr:last-child>td]:border-transparent font-poppins text-sm">
+    <slot />
+</table>
+</div>
+</div>

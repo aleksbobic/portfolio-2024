@@ -1,0 +1,55 @@
+---
+layout: ../../layouts/PostLayout.astro
+title: 'Collaboration Spotting X'
+date: 2022-07-01
+teaser: 'Dynamic schema-based network analytics.'
+abstract: "I built the Collaboration Spotting X platform with the aim of providing experts with a way of easily interacting and modeling networks in a visual manner. I integrated concepts from information retrieval, network analysis, and visual analytics using React, MobX, and FastAPI. It's divided into multiple Docker containers to contain the client-side, server-side, MongoDB database and optionally Matomo, making it easy to develop and deploy. You can easily customize the settings and upload your own data sets as CSV files. Users can retrieve subsets data through an intuitive search interface."
+tags: ["project", "visual analytics", "data science", "frontend", "backend", "user studies"]
+---
+
+import {ImageGrid} from "../../components/ImageGrid.tsx";
+import MDP from "../../components/MDP.astro";
+import MDH1 from "../../components/MDH1.astro";
+import MDH2 from "../../components/MDH2.astro";
+import MDH3 from "../../components/MDH3.astro";
+import MDH4 from "../../components/MDH4.astro";
+import MDblock from "../../components/MDBlock.astro";
+import MDCode from "../../components/MDCode.astro";
+import MDCodeBlock from "../../components/MDCodeBlock.astro";
+import MDLink from "../../components/MDLInk.astro";
+import MDImage from "../../components/MDImage.astro";
+import MDUL from "../../components/MDUL.astro";
+import MDOL from "../../components/MDOL.astro";
+import MDTable from "../../components/MDTable.astro";
+export const components = { p: MDP, table: MDTable, ol: MDOL, ul: MDUL, img: MDImage, a: MDLink, h1: MDH1, h2: MDH2, h3: MDH3, h4: MDH4, blockquote: MDblock, code: MDCode, pre: MDCodeBlock };
+
+### The Aim
+Traditional network analysis tools as well as representations tend to approach networks as structures with a static schema. If needed network schemas can usually be updated to a lot of work using Python and libraries such as NetworkX. However, such tasks require knowledge of programming that many experts, knowledgable in various fields may not have. The aim of developing Collaboration Spotting X (CSX) was to explore how introducing a new user-friendly approach to retrieving, analysing and modeling data as networks can potentially help experts get new insights from their data.
+
+### The User Interface
+
+Users start their exploration journey by searching for subsets of their dataset through a traditional search box. The results are shown in the form of networks created through a default schema. An example of search results represented as a network can be seen in the image below.
+
+<ImageGrid images={[{url: "csx-1.png", alt: "Collaboration Spotting X main interface", caption: "The main CSX interface showing the view settings on the left, the graph view in center and the widget pannel on the right."}]} key="csx-images" caption="The main CSX interface showing the view settings on the left, the graph view in center and the widget pannel on the right." client:load />
+
+Users can interact with the retrieved data through various customizable views, such as networks, tables, and statistics widgets. CSX additionally offers a commenting feature and a history of the users actions to facilitate collaboration and streamline the users workflow.
+
+<ImageGrid images={[{url: "csx-2.png", alt: "Collaboration Spotting X graph", caption: "A graph containg complex connections alongside the schema designer on the right."}]} key="csx-images" caption="A graph containg complex connections alongside the schema designer on the right." client:load />
+
+Users can model retrieved data using the CSX schema designer without worrying about the original dataset's connections. CSX automatically detects data types and suggests possible relationships between features to make the modeling process a breeze.
+
+<ImageGrid images={[{url: "csx-3.png", alt: "Collaboration Spotting X history", caption: "The CSX history view with a forked history on the top right and the Markdown comments pannel on the bottom right."}]} key="csx-images" caption="The CSX history view with a forked history on the top right and the Markdown comments pannel on the bottom right." client:load />
+
+### Findings and Lessons Learned
+During the iterative development proecss, the concepts introduced in CSX were evaluated in multiple user studies using various tools, such as surveys, interaction data anaylsis as well as interviews. The results showed how CSX can support users by enabling them to easily retriev and modify data as networks. These studies also provided a deeper insight into the usability aspect of CSX which could be used as a basis for building other similarly complex tools. If you're interested in using this project for your data analysis needs or would like to contribute, please don't hesitate to contact me. The full code can be seen on the [GitHub page](https://github.com/aleksbobic/csx "take me to the github page").
+
+### Papers
+In addition to the creation of Collaboraiton Spotting X this project also resulted in multiple papers listed below:
+
+> [Bobic, A., Le Goff, JM., Gütl, C. (2023). Exploring Tabular Data Through Networks. In: Kamps, J., et al. Advances in Information Retrieval. ECIR 2023. Lecture Notes in Computer Science, vol 13982. Springer, Cham. https://doi.org/10.1007/978-3-031-28241-6_13](https://link.springer.com/chapter/10.1007/978-3-031-28241-6_13)
+
+> Bobic, A., Le Goff, J-M., & Gütl, C. (2023). Towards a smart network schema builder using anonymous and implicit interaction data. In OSSYM 2023
+
+> [Bobic, A., Goff, J.L., & Guetl, C. (2021). Collaboration Spotting X - A Visual Network Exploration Tool. 2021 Eighth International Conference on Social Network Analysis, Management and Security (SNAMS), 01-08.](https://ieeexplore.ieee.org/document/9732139)
+
+> [Bobic, A., Le Goff, J. M., & Gütl, C. (2021). Towards supporting complex retrieval tasks through graph-based information retrieval and visual analytics. CEUR Workshop Proceedings, 2950, 30-37. https://ceur-ws.org/Vol-2950/paper-04.pdf0](https://ceur-ws.org/Vol-2950/paper-04.pdf)

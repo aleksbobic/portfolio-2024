@@ -1,0 +1,95 @@
+---
+import ThemeToggle from "@/components/ThemeToggle.astro";
+import { OpenBook, HomeSimple } from "iconoir-react";
+
+const pathname = new URL(Astro.request.url).pathname;
+
+const page = Astro.url.pathname;
+---
+
+<script>
+  let currentPage = "/";
+
+  document.addEventListener("swup:enable", () => {
+    const homelink = document.getElementById("home_link");
+    const postlink = document.getElementById("posts_link");
+    const navTitle = document.getElementById("nav_title");
+
+    const handleRouteChange = () => {
+      //@ts-ignore
+      if (window.swup.currentPageUrl === "/") {
+        homelink?.classList.add("dark:opacity-100", "opacity-100");
+        postlink?.classList.add("dark:opacity-30", "opacity-50");
+        homelink?.classList.remove("dark:opacity-30", "opacity-50");
+        postlink?.classList.remove("dark:opacity-100", "opacity-100");
+        if(navTitle) {
+          navTitle.innerHTML = "HOME";
+        }
+        //@ts-ignore
+      } else if (window.swup.currentPageUrl === "/posts") {
+        postlink?.classList.add("dark:opacity-100", "opacity-100");
+        homelink?.classList.add("dark:opacity-30", "opacity-50");
+        homelink?.classList.remove("dark:opacity-100", "opacity-100");
+        postlink?.classList.remove("dark:opacity-30", "opacity-50");
+        if(navTitle) {
+          navTitle.innerHTML = "BLOG";
+        }
+      } else {
+        homelink?.classList.remove(
+          "dark:opacity-100",
+          "opacity-100",
+          "dark:opacity-30",
+          "opacity-50"
+        );
+        postlink?.classList.remove(
+          "dark:opacity-30",
+          "opacity-50",
+          "dark:opacity-100",
+          "opacity-100"
+        );
+        postlink?.classList.add("dark:opacity-30", "opacity-50");
+        homelink?.classList.add("dark:opacity-30", "opacity-50");
+      }
+    };
+
+    handleRouteChange();
+
+    //@ts-ignore
+    window.swup.hooks.on("page:view", () => {
+      handleRouteChange();
+    });
+  });
+</script>
+
+<div
+  class="container flex flex-row justify-between items-center w-full h-full backdrop-blur-sm 0 bg-sky-600/5 px-5 py-2 rounded-2xl mx-auto border-solid border border-black/5 dark:border-white/5 max-w-screen-lg z-50"
+>
+
+  <div class="flex gap-5 ">
+    <a
+      id="home_link"
+      title="Home"
+      data-tooltip-placement="bottom"
+      href="/"
+      class=`hover:opacity-100 dark:hover:opacity-100 transition-all dark:opacity-30 opacity-50`
+      aria-label="Home"><HomeSimple /></a
+    >
+    <a
+      id="posts_link"
+      title="Blog"
+      data-tooltip-placement="bottom"
+      href="/posts"
+      class=`hover:opacity-100 dark:hover:opacity-100 transition-all dark:opacity-30 opacity-50`
+      aria-label="Blog"><OpenBook /></a
+    >
+  </div>
+
+  <p
+    id="nav_title"
+    class="inline text-sm font-extrabold transition-all -ml-7 max-w-28 md:max-w-56 truncate font-archivo"
+  >
+    HOME
+  </p>
+
+  <ThemeToggle />
+</div>

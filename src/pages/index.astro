@@ -1,0 +1,157 @@
+---
+import "@/styles/globals.css";
+
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import aleksImage from "../images/avatar.png";
+import { AnimatedTabs } from "@/components/AnimatedTabs";
+import { Meteors } from "@/components/Meteors";
+import { PostCard } from "@/components/PostCard";
+import { ItemList } from "@/components/ItemList";
+import { Github } from "iconoir-react";
+
+const allPosts = await Astro.glob("./posts/*.mdx");
+
+const greeting = "Hi, I'm ";
+
+
+---
+
+<Layout title="Aleks">
+  <main class="border-0 outline-none overflow-x-hidden">
+    <h1 class="text-5xl font-bold text-center dark:text-white text-gray-800 font-archivo">
+      {greeting}<span
+        class="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent"
+        >Aleks</span
+      >
+    </h1>
+    <Image
+      src={aleksImage}
+      alt="Aleks"
+      class="w-40 h-40 mx-auto my-8"
+      loading="eager"
+    />
+
+    <div class="container max-w-screen-lg">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div
+          class="row-span-1 rounded-2xl border-2 border-slate-400/10 bg-neutral-100 p-8 dark:bg-gray-600/5 col-span1"
+        >
+          <h3 class="text-2xl font-bold pb-2 font-archivo">🙋‍♂️ About</h3>
+          <p class="font-poppins font-semibold">
+            As a seasoned <span class="text-sm">🌶️</span> software engineer and researcher,
+            I specialize in developing innovative solutions through full-stack technologies
+            and advanced data analysis. My extensive background in data science and
+            software engineering underpins my commitment to delivering high-quality,
+            impactful products. I am dedicated to embracing complex challenges to
+            stay at the forefront of the industry.
+          </p>
+        </div>
+        <div
+          class={"row-span-1 rounded-2xl border-2 border-slate-400/10 bg-neutral-100 p-4 dark:bg-gray-600/5 col-span1 flex flex-col sm:min-h-72 min-h-96"}
+        >
+          <h3 class="text-2xl font-bold pb-2 font-archivo">🔧 Skills</h3>
+          <AnimatedTabs client:load />
+        </div>
+      </div>
+    </div>
+    <div class="container max-w-screen-lg mt-20">
+      <h2 class="text-3xl font-bold text-center dark:text-white text-gray-800 font-archivo">
+        PROJECTS
+      </h2>
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 mt-10">
+        {
+          allPosts
+            .filter((post) => post.frontmatter.tags.includes("project"))
+            .map((post, i) => <PostCard post={post} blobAnimation={i % 2 ? "animate-blob1" : i % 3 ? "animate-blob2" : "animate-blob3"} client:load />)
+        }
+      </div>
+
+      <div
+        class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 w-full gap-4 mt-4"
+      >
+        <a
+          href="/posts"
+          class="row-span-1 rounded-2xl border-2 border-slate-400/10 bg-neutral-100 hover:bg-black hover:text-white p-3 sm:p-8 dark:bg-gray-600/5 hover:dark:bg-blue-600 hover:dark:text-white flex flex-col justify-center items-center transition-all aspect-square h-full hover:scale-110 relative after:content-[''] after:aspect-square after:bg-gray-800 dark:after:bg-blue-500 after:w-full after:h-full after:absolute after:duration-150 hover:after:rotate-6 after:rounded-2xl after:-z-50 after:opacity-0 hover:after:opacity-100 before:content-[''] before:aspect-square before:bg-gray-600 dark:before:bg-blue-700 before:w-full before:h-full before:absolute before:duration-150 hover:before:rotate-12 before:rounded-2xl before:-z-40 before:opacity-0 hover:before:opacity-100"
+        >
+          <h1 class="text-md sm:text-2xl font-bold text-center max-w-56 font-archivo">
+            Blog
+          </h1>
+        </a>
+        <a
+          href="https://github.com/aleksbobic"
+          class="row-span-1 rounded-2xl border-2 border-slate-400/10 bg-neutral-100 hover:bg-black hover:text-white p-3 sm:p-8 dark:bg-gray-600/5 hover:dark:bg-blue-600 hover:dark:text-white flex flex-col justify-center items-center transition-all aspect-square h-full hover:scale-110 relative group"
+        >
+          <h1
+            aria-label="GitHub Link"
+            class="text-md sm:text-2xl font-bold text-center max-w-56"
+          >
+            <Github />
+          </h1>
+          <Meteors
+            className="z-10 opacity-0 w-full h-full absolute overflow-hidden group-hover:opacity-100"
+            number={60}
+          />
+        </a>
+      </div>
+    </div>
+    <div class="container max-w-screen-lg mt-20">
+      <h2 class="text-3xl font-bold text-center dark:text-white text-gray-800 font-archivo">
+        ABOUT
+      </h2>
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 mt-10">
+        <div
+          class={"row-span-1 rounded-2xl border-2 border-slate-400/10 bg-neutral-100 p-4 dark:bg-gray-600/5 col-span1 max-h-80 relative pt-20 pr-0"}
+        >
+          <h3 class="text-2xl font-bold pb-2 absolute top-8 font-archivo">
+            👨‍💻 Work Experience
+          </h3>
+          <ItemList
+            items={[
+              {
+                title: "Full Stack Engineer",
+                subtitle: "ETH Zürich",
+                date: "2023 - Present",
+              },
+              {
+                title: "Researcher / Full Stack Engineer",
+                subtitle: "CERN",
+                date: "2020 - 2023",
+              },
+              {
+                title: "Front-End Engineer",
+                subtitle: "Netconomy",
+                date: "2017 - 2020",
+              },
+            ]}
+          />
+        </div>
+        <div
+          class={"row-span-1 rounded-2xl border-2 border-slate-400/10 bg-neutral-100 p-4 dark:bg-gray-600/5 col-span1 max-h-80 relative pt-20 pr-0"}
+        >
+          <h3 class="text-2xl font-bold pb-2 absolute top-8 font-archivo">🎓 Education</h3>
+          <ItemList
+            items={[
+              {
+                title: "🧙‍♂️ PhD - Computer Science",
+                subtitle: "Graz University of Technology",
+                date: "2020 - 2023",
+              },
+              {
+                title: "😎 Masters - Computer Science",
+                subtitle: "Graz University of Technology",
+                date: "2016 - 2020",
+              },
+              {
+                title: "🤓 Bachelors - Computer Science",
+                subtitle: "University of Ljubljana",
+                date: "2011 - 2015",
+              },
+            ]}
+          />
+        </div>
+      </div>
+    </div>
+
+  </main>
+</Layout>

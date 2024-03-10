@@ -1,0 +1,39 @@
+---
+layout: ../../layouts/PostLayout.astro
+title: 'Infret'
+date: 2023-11-03
+teaser: 'Educational information retrieval app.'
+abstract: "Infret is an educational information retrieval tool that I developed for my master's research project. Through evaluation in multiple university classes, Infret has proven to be a highly effective visualization and exploration tool that is still in use today. My analysis of the usage data and feedback surveys has enabled me to better understand how Infret helps students learn information retrieval concepts and meet their educational needs. Infret was later extended by a master's student under my mentorship with coding features which enable users to write custom IR metrics. It is also in use as part of an Information retrieval class for multiple years and helps students understand various information retrieval concepts."
+tags: ["Angular", "Hapi", "MySQL", "Juypter", "Pandas", "NetworkX", "plotly", "project"]
+---
+
+import MDP from "../../components/MDP.astro";
+import MDH1 from "../../components/MDH1.astro";
+import MDH2 from "../../components/MDH2.astro";
+import MDH3 from "../../components/MDH3.astro";
+import MDH4 from "../../components/MDH4.astro";
+import MDblock from "../../components/MDBlock.astro";
+import MDCode from "../../components/MDCode.astro";
+import MDCodeBlock from "../../components/MDCodeBlock.astro";
+import MDLink from "../../components/MDLInk.astro";
+import MDImage from "../../components/MDImage.astro";
+import MDUL from "../../components/MDUL.astro";
+import MDOL from "../../components/MDOL.astro";
+import MDTable from "../../components/MDTable.astro";
+export const components = { p: MDP, table: MDTable, ol: MDOL, ul: MDUL, img: MDImage, a: MDLink, h1: MDH1, h2: MDH2, h3: MDH3, h4: MDH4, blockquote: MDblock, code: MDCode, pre: MDCodeBlock };
+
+
+### The Aim
+The idea behind Infret was to provide an educational information retrieval application for computer science students. The initial aim was to cover basic concepts of information retrieval such as term weighting and gain a better understanding of how such solutions help students grasp the information retreival topic. To do so I first developed the application using [Hapi](https://hapi.dev/), [MySQL](https://www.mysql.com/) and [Angular](https://angular.dev/). Next I conducted a user study as part of which I explored how the tool is perceived by its users through usability, experienced emotions and some direct feedback as well as how it helps the users learn concepts better. The analysis of resutls was done using traditional analysis tools such as [Jupyter](https://jupyter.org/), [Pandas](https://pandas.pydata.org/), [NetworkX](https://networkx.org/) and [Plotly.](https://plotly.com/python/) In addition to analysing the `survey data` I analysed `interaction data` collected during the usage of the tool. Some of the findings and lessons learned are discussed in the next section.
+
+### Findings and Lessons Learned
+**Research perspective:** Over the course of multiple studies this project showed how introducing more interactive materials into a class helps students better understand concepts as well as motivates students to explore various new topics. Measuring `usability` in addition to asking for explicit feedback about Infret also proved to be a very simple and effective way of identifying the severity of UX problems.
+
+**Technical perspective:** While Infret was built with modularity in mind and the code was split into logical compoennts, it was not `containerized`. Furthermore the choice of `Node-based framework` for the backend was a sound decision since it meant that people working on the project only need to learn a single language. Despite `Javascript/TypeScript` not being the primary language of choice for data applications in the context of educational apps it provides an environment that is easily extensible as well as a variety of libraries that can be used for NLP, IR and related areas. Dealing with interaction data also proved to be interesting and challenging since the intial model of the tracked interaction data also influenced the later analysis of the data. To analyse this data I split it into three granularity levels: areas, sub-areas and actions. Depending on the questions one wants to answer they should chose one of these three granularity levels. In my case these were the area and sub-area levels which enabled me to gain an insight into how students navigated between multiple concepts presented in Infret.
+
+### Papers
+In addition to the creation of Infret this project also resulted in the two papers listed below as well as a master thesis as part of which I acted as a co-supervisor.
+
+> [Bobić, A., Gütl, C., Cheong, C. (2021). Infret: Preliminary Findings of a Tool for Explorative Learning of Information Retrieval Concepts. In: Auer, M., May, D. (eds) Cross Reality and Data Science in Engineering. REV 2020. Advances in Intelligent Systems and Computing, vol 1231. Springer, Cham. https://doi.org/10.1007/978-3-030-52575-0_70](https://link.springer.com/chapter/10.1007/978-3-030-52575-0_70)
+
+> [Bobić, A., Cheong, C., Filippou, J., Cheong, F., Guetl, C. (2020). Infret: Enhancing a Tool for Explorative Learning of Information Retrieval Concepts. In: Auer, M., Hortsch, H., Sethakul, P. (eds) The Impact of the 4th Industrial Revolution on Engineering Education. ICL 2019. Advances in Intelligent Systems and Computing, vol 1134. Springer, Cham. https://doi.org/10.1007/978-3-030-40274-7_7](https://link.springer.com/chapter/10.1007/978-3-030-40274-7_7)

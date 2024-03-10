@@ -1,0 +1,53 @@
+---
+import "@/styles/globals.css";
+import Layout from "../layouts/Layout.astro";
+import {Badge} from "../components/ui/badge"
+import { NavArrowRight, Post } from "iconoir-react";
+
+
+const allPosts = await Astro.glob("./posts/*.mdx");
+
+const dateToString = (date:string) => {
+  const dateObj = new Date(date)
+  const day = dateObj.getDate();
+  const month = dateObj.toLocaleString('default', { month: 'short' });
+  const year = dateObj.getFullYear();
+  return `${day}. ${month} ${year}`
+}
+---
+
+<Layout title="Aleks">
+  <main class="border-0 outline-none">
+  <div class="container max-w-screen-lg mt-20 min-h-[calc(100vh-350px)]">
+    <div class="flex flex-col gap-5 mt-10">
+      {
+        allPosts.map((post, i) => (
+          <a
+            href={post.url}
+            class="row-span-1 rounded-2xl bg-neutral-100 hover:bg-neutral-200 dark:bg-gray-600/20 hover:dark:bg-gray-600/40 p-10 py-7 transition-all group relative hover:scale-110 hover:my-5 duration-300"
+          >
+
+            <h1 class="text-3xl font-bold text-left dark:text-white text-gray-800 mb-4 font-archivo">
+              <Post className="inline w-7 text-gray-400 -mt-2 mr-2 group-hover:-rotate-45 group-hover:mr-4 duration-200"/>{post.frontmatter.title}
+            </h1>
+
+
+            <p class="font-medium text-left text-gray-500 line-clamp-6 md:line-clamp-2 text-sm font-poppins">
+              {post.frontmatter.abstract}
+            </p>
+
+            <div class="flex flex-wrap gap-3 mt-4 w-full mb-4">
+            {post.frontmatter.tags.sort().filter((tag:string) => tag !== "project").slice(0,3).map((tag:string) => <Badge className="px-2 py-1 text-xs dark:bg-gray-800 dark:text-gray-300 bg-gray-200 text-gray-600 font-poppins uppercase">{tag}</Badge>)}
+            </div>
+
+            <p class="text-xs text-gray-500/60 font-extrabold mt-2">{dateToString(post.frontmatter.date)}</p>
+
+            <NavArrowRight className="right-16 bottom-7 opacity-0 group-hover:opacity-100 group-hover:translate-x-6 duration-300 absolute font-poppins" />
+
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</main>
+</Layout>

@@ -1,0 +1,10 @@
+---
+const props = Astro.props;
+---
+
+<ol
+  {...props}
+  class="text-sm pl-8 relative my-5 dark:text-gray-300 text-black list-decimal [&>li]:marker:text-blue-600 [&>li]:marker:text-sm [&>li]:marker:font-semibold max-w-3xl font-poppins"
+>
+  <slot />
+</ol>

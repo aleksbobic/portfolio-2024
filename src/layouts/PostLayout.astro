@@ -1,0 +1,51 @@
+---
+import "@/styles/globals.css";
+import Layout from "../layouts/Layout.astro";
+const { frontmatter, post } = Astro.props;
+const props = Astro.props;
+import { Badge } from "../components/ui/badge";
+
+const dateToString = (date: string) => {
+  const dateObj = new Date(date);
+  const day = dateObj.getDate();
+  const month = dateObj.toLocaleString("default", { month: "short" });
+  const year = dateObj.getFullYear();
+  return `${day}. ${month} ${year}`;
+};
+
+import {PostHeader} from "@/components/PostHeader";
+
+import '@fontsource/poppins/400.css';
+import '@fontsource/poppins/600.css';
+import '@fontsource/poppins/500.css';
+import '@fontsource/poppins/700.css';
+import '@fontsource-variable/archivo';
+---
+
+<script>
+  document.addEventListener("swup:enable", () => {
+    const navTitle = document.getElementById("nav_title");
+    const postHeader = document.getElementById("post_header");
+    if (navTitle && postHeader) {
+      navTitle.innerHTML = postHeader.innerHTML;
+    }
+
+    //@ts-ignore
+    window.swup.hooks.on("page:view", () => {
+      const navTitle = document.getElementById("nav_title");
+      const postHeader = document.getElementById("post_header");
+      if (navTitle && postHeader) {
+        navTitle.innerHTML = postHeader.innerHTML;
+      }
+    });
+  });
+</script>
+
+<Layout title={frontmatter.title}>
+  <main class="border-0 outline-none">
+    <PostHeader title={frontmatter.title} abstract={frontmatter.abstract} tags={frontmatter.tags} date={dateToString(frontmatter.date)} client:load/>
+    <div class="container max-w-screen-lg relative flex flex-col items-center">
+      <slot />
+    </div>
+  </main>
+</Layout>

@@ -1,0 +1,10 @@
+---
+const props = Astro.props;
+---
+
+<ul
+  {...props}
+  class="text-sm pl-8 relative my-5 dark:text-gray-300 text-black [&>li]:before:content-[''] [&>li]:before:w-[5px] [&>li]:before:h-[5px] [&>li]:before:bg-blue-600 [&>li]:before:block [&>li]:before:rounded-full [&>li]:relative [&>li]:before:absolute [&>li]:before:-left-4 [&>li]:before:top-3 max-w-3xl font-poppins"
+>
+  <slot />
+</ul>

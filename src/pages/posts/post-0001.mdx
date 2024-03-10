@@ -23,6 +23,10 @@ import MDOL from "../../components/MDOL.astro";
 import MDTable from "../../components/MDTable.astro";
 export const components = { p: MDP, table: MDTable, ol: MDOL, ul: MDUL, img: MDImage, a: MDLink, h1: MDH1, h2: MDH2, h3: MDH3, h4: MDH4, blockquote: MDblock, code: MDCode, pre: MDCodeBlock };
 
+import csx1 from "src/images/csx-1.png"
+import csx2 from "src/images/csx-2.png"
+import csx3 from "src/images/csx-3.png"
+
 ### The Aim
 Traditional network analysis tools as well as representations tend to approach networks as structures with a static schema. If needed network schemas can usually be updated to a lot of work using Python and libraries such as NetworkX. However, such tasks require knowledge of programming that many experts, knowledgable in various fields may not have. The aim of developing Collaboration Spotting X (CSX) was to explore how introducing a new user-friendly approach to retrieving, analysing and modeling data as networks can potentially help experts get new insights from their data.
 
@@ -30,15 +34,15 @@ Traditional network analysis tools as well as representations tend to approach n
 
 Users start their exploration journey by searching for subsets of their dataset through a traditional search box. The results are shown in the form of networks created through a default schema. An example of search results represented as a network can be seen in the image below.
 
-<ImageGrid images={[{url: "csx-1.png", alt: "Collaboration Spotting X main interface", caption: "The main CSX interface showing the view settings on the left, the graph view in center and the widget pannel on the right."}]} key="csx-images" caption="The main CSX interface showing the view settings on the left, the graph view in center and the widget pannel on the right." client:load />
+<ImageGrid images={[{url: csx1.src, alt: "Collaboration Spotting X main interface", caption: "The main CSX interface showing the view settings on the left, the graph view in center and the widget pannel on the right."}]} key="csx-images" caption="The main CSX interface showing the view settings on the left, the graph view in center and the widget pannel on the right." client:load />
 
 Users can interact with the retrieved data through various customizable views, such as networks, tables, and statistics widgets. CSX additionally offers a commenting feature and a history of the users actions to facilitate collaboration and streamline the users workflow.
 
-<ImageGrid images={[{url: "csx-2.png", alt: "Collaboration Spotting X graph", caption: "A graph containg complex connections alongside the schema designer on the right."}]} key="csx-images" caption="A graph containg complex connections alongside the schema designer on the right." client:load />
+<ImageGrid images={[{url: csx2.src, alt: "Collaboration Spotting X graph", caption: "A graph containg complex connections alongside the schema designer on the right."}]} key="csx-images" caption="A graph containg complex connections alongside the schema designer on the right." client:load />
 
 Users can model retrieved data using the CSX schema designer without worrying about the original dataset's connections. CSX automatically detects data types and suggests possible relationships between features to make the modeling process a breeze.
 
-<ImageGrid images={[{url: "csx-3.png", alt: "Collaboration Spotting X history", caption: "The CSX history view with a forked history on the top right and the Markdown comments pannel on the bottom right."}]} key="csx-images" caption="The CSX history view with a forked history on the top right and the Markdown comments pannel on the bottom right." client:load />
+<ImageGrid images={[{url: csx3.src, alt: "Collaboration Spotting X history", caption: "The CSX history view with a forked history on the top right and the Markdown comments pannel on the bottom right."}]} key="csx-images" caption="The CSX history view with a forked history on the top right and the Markdown comments pannel on the bottom right." client:load />
 
 ### Findings and Lessons Learned
 During the iterative development proecss, the concepts introduced in CSX were evaluated in multiple user studies using various tools, such as surveys, interaction data anaylsis as well as interviews. The results showed how CSX can support users by enabling them to easily retriev and modify data as networks. These studies also provided a deeper insight into the usability aspect of CSX which could be used as a basis for building other similarly complex tools. If you're interested in using this project for your data analysis needs or would like to contribute, please don't hesitate to contact me. The full code can be seen on the [GitHub page](https://github.com/aleksbobic/csx "take me to the github page").

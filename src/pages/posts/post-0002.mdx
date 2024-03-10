@@ -23,6 +23,7 @@ import MDOL from "../../components/MDOL.astro";
 import MDTable from "../../components/MDTable.astro";
 export const components = { p:MDP, table: MDTable, ol: MDOL, ul: MDUL, img: MDImage, a: MDLink, h1: MDH1, h2: MDH2, h3: MDH3, h4: MDH4, blockquote: MDblock, code: MDCode, pre: MDCodeBlock };
 
+import rec2 from "src/images/rec-2.png"
 
 ## Mattermost Recommender System
 The aim of this experiment was to explore how using a completly anonymized [CERN Mattermost dataset](https://zenodo.org/records/6319684) we can create recommender systems for Mattermost channels.
@@ -30,7 +31,7 @@ The aim of this experiment was to explore how using a completly anonymized [CERN
 
 Using `NetworkX` and `Pandas` I constructed multiple `implicit social networks` from the [CERN Mattermost dataset](https://zenodo.org/records/6319684) based on various signals. These signals were used to create `weighted connections between users`. They included values such as the number of messages sent to particular channels, number of mentions of a user in a channel and the number of shared units between users. I analyzed the netwrok connections and created multiple custom `recommender system measures`. These measures indicated the `relevance of channels to users` and also the `closness between users`. These measures were evaluated in multiple existing recommender system architectures by my colleague and were shown to be `more efficient than simple measures` such as message counts. Overall, it was a fascinating project that gave me the opportunity to explore the intersection of social network analysis and recommender systems. The full code can be seen on the [GitHub page](https://github.com/IgorJakovljevic/IMPLICIT-MMRS "take me to the github page").
 
-<ImageGrid images={[ {url: "rec-2.png", alt: "Network of mattermost users", caption: "A network of very popular Mattermost users connected through their common organisational units and common Mattermost channels. While most users are connected in a large component it can also be seen there is a small isolated component of users which might have special properties."}]} key="csx-images" caption="A network of very popular Mattermost users connected through their common organisational units and common Mattermost channels. While most users are connected in a large component it can also be seen there is a small isolated component of users which might have special properties. Visualisation created using Collaboration Spotting X" client:load />
+<ImageGrid images={[ {url: rec2.src, alt: "Network of mattermost users", caption: "A network of very popular Mattermost users connected through their common organisational units and common Mattermost channels. While most users are connected in a large component it can also be seen there is a small isolated component of users which might have special properties."}]} key="csx-images" caption="A network of very popular Mattermost users connected through their common organisational units and common Mattermost channels. While most users are connected in a large component it can also be seen there is a small isolated component of users which might have special properties. Visualisation created using Collaboration Spotting X" client:load />
 
 
 ## Adaptive UI Recommender System

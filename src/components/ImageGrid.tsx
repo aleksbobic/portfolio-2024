@@ -43,12 +43,10 @@ export function ImageGrid({ images, className, key, caption }: ImageGridProps) {
       >
         {images.map((image, i) => (
           <img
-            src={`/src/images/${image.url}`}
+            src={image.url}
             key={`${key}_${i}`}
             alt={image.alt}
-            onClick={() =>
-              showImage(`/src/images/${image.url}`, image.alt, image.caption)
-            }
+            onClick={() => showImage(image.url, image.alt, image.caption)}
             className="rounded-lg hover:cursor-pointer transition-all hover:scale-105"
           />
         ))}

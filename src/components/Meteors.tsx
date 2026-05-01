@@ -1,6 +1,4 @@
 import { cn } from "@/lib/utils";
-import clsx from "clsx";
-import React from "react";
 
 export const Meteors = ({
   number,
@@ -13,7 +11,7 @@ export const Meteors = ({
   return (
     <div className={className}>
       <div className="relative">
-        {meteors.map((el, idx) => (
+        {meteors.map((_, idx) => (
           <span
             key={"meteor" + idx}
             className={cn(

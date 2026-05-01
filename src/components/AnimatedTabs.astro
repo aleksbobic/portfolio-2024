@@ -1,0 +1,220 @@
+---
+const tabs = [
+  { id: "dev", label: "Dev" },
+  { id: "data", label: "Data" },
+  { id: "other", label: "Other" },
+] as const;
+
+const skills = {
+  dev: [
+    "JavaScript",
+    "React",
+    "Vue",
+    "Electron",
+    "MobX",
+    "Jest",
+    "Cypress",
+    "Python",
+    "FastAPI",
+    "Django",
+    "ElasticSearch",
+    "Docker",
+    "SQL",
+    "MongoDB",
+    "NginX",
+    "Git",
+    "API",
+    "Bash",
+    "Postgres",
+    "Redis",
+  ],
+  data: [
+    "Scrapy",
+    "Pandas",
+    "Polars",
+    "ETL Pipelines",
+    "NetworkX",
+    "Numpy",
+    "SpaCy",
+    "Plotly",
+    "Data visualisation",
+    "Information retrieval",
+    "Study design",
+    "Sci. paper research",
+  ],
+  other: [
+    "Communicating Insights",
+    "Presenting",
+    "Teamwork",
+    "Mentoring & training",
+    "Project management",
+    "Collaborating",
+    "Scrum",
+    "Software Architecture",
+  ],
+} as const;
+
+const activeTab = tabs[0].id;
+const componentId = "skills-tabs";
+---
+
+<div id={componentId} class="container flex h-full w-full flex-col p-0">
+  <div class="relative grow overflow-hidden rounded-xl">
+    {
+      tabs.map((tab) => (
+        <div
+          data-panel={tab.id}
+          class:list={[
+            "skills-panel absolute inset-0 flex w-full flex-wrap content-start gap-2 pb-2",
+            tab.id !== activeTab && "hidden",
+          ]}
+        >
+          {skills[tab.id].map((skill) => (
+            <div class="relative rounded-full bg-black px-3 py-1 text-xs font-semibold uppercase text-white dark:bg-white dark:text-black font-poppins">
+              {skill}
+            </div>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="relative flex w-fit space-x-1 rounded-full" data-tab-list>
+    <div
+      class="pointer-events-none absolute inset-y-0 z-0 rounded-full bg-black transition-[transform,width,opacity] duration-300 ease-out dark:bg-white"
+      data-indicator
+      style="width: 0; opacity: 0; transform: translateX(0);"
+    ></div>
+    {
+      tabs.map((tab) => (
+        <button
+          type="button"
+          data-tab={tab.id}
+          class:list={[
+            "relative z-10 rounded-full px-3 py-1.5 text-sm font-semibold transition-colors focus-visible:outline-2 font-poppins",
+            tab.id === activeTab
+              ? "text-white dark:text-black"
+              : "text-black dark:text-white hover:text-black/60 dark:hover:text-white/60",
+          ]}
+          style={{ WebkitTapHighlightColor: "transparent" }}
+        >
+          {tab.label}
+        </button>
+      ))
+    }
+  </div>
+</div>
+
+<script is:inline>
+  const initializeSkillsTabs = () => {
+    const root = document.getElementById("skills-tabs");
+
+    if (!root || root.dataset.initialized === "true") {
+      return;
+    }
+
+    root.dataset.initialized = "true";
+
+    const tabList = root.querySelector("[data-tab-list]");
+    const indicator = root.querySelector("[data-indicator]");
+    const tabs = Array.from(root.querySelectorAll("[data-tab]"));
+    const panels = Array.from(root.querySelectorAll("[data-panel]"));
+    let activeTab = "dev";
+
+    const updateIndicator = () => {
+      const activeButton = root.querySelector(`[data-tab="${activeTab}"]`);
+
+      if (!tabList || !indicator || !(activeButton instanceof HTMLElement)) {
+        return;
+      }
+
+      const listRect = tabList.getBoundingClientRect();
+      const buttonRect = activeButton.getBoundingClientRect();
+
+      indicator.style.width = `${buttonRect.width}px`;
+      indicator.style.opacity = "1";
+      indicator.style.transform = `translateX(${buttonRect.left - listRect.left}px)`;
+    };
+
+    const animationClasses = [
+      "skills-enter-from-left",
+      "skills-enter-from-right",
+      "skills-exit-to-left",
+      "skills-exit-to-right",
+    ];
+
+    const clearPanelAnimation = (panel) => {
+      panel.classList.remove(...animationClasses);
+    };
+
+    const updateTabStyles = (nextTab) => {
+      tabs.forEach((button) => {
+        const isActive = button.getAttribute("data-tab") === nextTab;
+
+        button.classList.toggle("text-white", isActive);
+        button.classList.toggle("dark:text-black", isActive);
+        button.classList.toggle("text-black", !isActive);
+        button.classList.toggle("dark:text-white", !isActive);
+        button.classList.toggle("hover:text-black/60", !isActive);
+        button.classList.toggle("dark:hover:text-white/60", !isActive);
+      });
+    };
+
+    const showPanel = (currentTab, nextTab, direction) => {
+      const currentPanel = root.querySelector(`[data-panel="${currentTab}"]`);
+      const nextPanel = root.querySelector(`[data-panel="${nextTab}"]`);
+
+      if (!(currentPanel instanceof HTMLElement) || !(nextPanel instanceof HTMLElement)) {
+        return;
+      }
+
+      panels.forEach((panel) => clearPanelAnimation(panel));
+      nextPanel.classList.remove("hidden");
+
+      currentPanel.classList.add(
+        direction > 0 ? "skills-exit-to-right" : "skills-exit-to-left"
+      );
+      nextPanel.classList.add(
+        direction > 0 ? "skills-enter-from-left" : "skills-enter-from-right"
+      );
+
+      window.setTimeout(() => {
+        currentPanel.classList.add("hidden");
+        clearPanelAnimation(currentPanel);
+        clearPanelAnimation(nextPanel);
+      }, 260);
+
+      updateTabStyles(nextTab);
+    };
+
+    tabs.forEach((button) => {
+      button.addEventListener("click", () => {
+        const nextTab = button.getAttribute("data-tab");
+
+        if (!nextTab || nextTab === activeTab) {
+          return;
+        }
+
+        const currentIndex = tabs.findIndex(
+          (tab) => tab.getAttribute("data-tab") === activeTab
+        );
+        const nextIndex = tabs.findIndex(
+          (tab) => tab.getAttribute("data-tab") === nextTab
+        );
+        const direction = nextIndex > currentIndex ? 1 : -1;
+
+        const previousTab = activeTab;
+        activeTab = nextTab;
+        showPanel(previousTab, nextTab, direction);
+        updateIndicator();
+      });
+    });
+
+    updateTabStyles(activeTab);
+    updateIndicator();
+    window.addEventListener("resize", updateIndicator);
+  };
+
+  document.addEventListener("astro:page-load", initializeSkillsTabs);
+  initializeSkillsTabs();
+</script>

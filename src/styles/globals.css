@@ -144,3 +144,67 @@ html.dark .tippy-box[data-theme='default'] {
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
 }
+
+@keyframes skills-enter-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(calc(-100% - 2rem));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes skills-enter-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(calc(100% + 2rem));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes skills-exit-to-left {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(calc(-100% - 2rem));
+  }
+}
+
+@keyframes skills-exit-to-right {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(calc(100% + 2rem));
+  }
+}
+
+.skills-enter-from-left {
+  animation: skills-enter-from-left 240ms ease-out;
+}
+
+.skills-enter-from-right {
+  animation: skills-enter-from-right 240ms ease-out;
+}
+
+.skills-exit-to-left {
+  animation: skills-exit-to-left 240ms ease-out forwards;
+}
+
+.skills-exit-to-right {
+  animation: skills-exit-to-right 240ms ease-out forwards;
+}

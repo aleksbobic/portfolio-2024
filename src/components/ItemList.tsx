@@ -8,7 +8,10 @@ export function ItemList(props: ItemListProps) {
       {props &&
         props.items &&
         props.items.map((item) => (
-          <div className="w-full dark:bg-gray-700/15 bg-gray-200 p-4 rounded-xl">
+          <div
+            key={`${item.title}-${item.subtitle}-${item.date}`}
+            className="w-full dark:bg-gray-700/15 bg-gray-200 p-4 rounded-xl"
+          >
             <h4 className="text-xl font-bold dark:text-gray-200 text-gray-800 font-archivo">
               {item.title}
             </h4>

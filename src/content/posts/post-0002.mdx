@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/PostLayout.astro
 title: 'Anonymous Recommender Systems'
 date: 2023-10-01
 teaser: 'From user interactions to recommendations.'
@@ -31,7 +30,7 @@ This experiment aimed to explore how using a completely anonymized [CERN Matterm
 
 Using `NetworkX` and `Pandas` I constructed multiple `implicit social networks` from the [CERN Mattermost dataset](https://zenodo.org/records/6319684) based on various signals. These signals were used to create `weighted connections between users`. They included values such as the number of messages sent to particular channels, the number of mentions of a user in a channel and the number of shared units between users. I analyzed the network connections and created multiple custom `recommender system measures`. These measures indicated the `relevance of channels to users` and also the `closeness between users`. These measures were evaluated in multiple existing recommender system architectures by my colleague and were shown to be `more efficient than simple measures` such as message counts. Overall, it was a fascinating project that allowed me to explore the intersection of social network analysis and recommender systems. The full code can be seen on the [GitHub page](https://github.com/IgorJakovljevic/IMPLICIT-MMRS "take me to the GitHub page").
 
-<ImageGrid images={[ {url: rec2.src, alt: "Network of Mattermost users", caption: "A network of very popular Mattermost users connected through their common organisational units and common Mattermost channels. While most users are connected in a large component it can also be seen there is a small isolated component of users which might have special properties."}]} key="csx-images" caption="A network of very popular Mattermost users connected through their common organisational units and common Mattermost channels. While most users are connected in a large component it can also be seen there is a small isolated component of users which might have special properties." client:load />
+<ImageGrid images={[ {url: rec2.src, alt: "Network of Mattermost users", caption: "A network of very popular Mattermost users connected through their common organisational units and common Mattermost channels. While most users are connected in a large component it can also be seen there is a small isolated component of users which might have special properties."}]} imageKeyPrefix="rec-images" caption="A network of very popular Mattermost users connected through their common organisational units and common Mattermost channels. While most users are connected in a large component it can also be seen there is a small isolated component of users which might have special properties." client:load />
 
 
 ## Adaptive UI Recommender System

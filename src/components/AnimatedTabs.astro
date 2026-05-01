@@ -84,7 +84,8 @@ const componentId = "skills-tabs";
       class="pointer-events-none absolute inset-y-0 z-0 rounded-full bg-black transition-[transform,width,opacity] duration-300 ease-out dark:bg-white"
       data-indicator
       style="width: 0; opacity: 0; transform: translateX(0);"
-    ></div>
+    >
+    </div>
     {
       tabs.map((tab) => (
         <button
@@ -164,7 +165,10 @@ const componentId = "skills-tabs";
       const currentPanel = root.querySelector(`[data-panel="${currentTab}"]`);
       const nextPanel = root.querySelector(`[data-panel="${nextTab}"]`);
 
-      if (!(currentPanel instanceof HTMLElement) || !(nextPanel instanceof HTMLElement)) {
+      if (
+        !(currentPanel instanceof HTMLElement) ||
+        !(nextPanel instanceof HTMLElement)
+      ) {
         return;
       }
 
@@ -172,10 +176,10 @@ const componentId = "skills-tabs";
       nextPanel.classList.remove("hidden");
 
       currentPanel.classList.add(
-        direction > 0 ? "skills-exit-to-right" : "skills-exit-to-left"
+        direction > 0 ? "skills-exit-to-right" : "skills-exit-to-left",
       );
       nextPanel.classList.add(
-        direction > 0 ? "skills-enter-from-left" : "skills-enter-from-right"
+        direction > 0 ? "skills-enter-from-left" : "skills-enter-from-right",
       );
 
       window.setTimeout(() => {
@@ -196,10 +200,10 @@ const componentId = "skills-tabs";
         }
 
         const currentIndex = tabs.findIndex(
-          (tab) => tab.getAttribute("data-tab") === activeTab
+          (tab) => tab.getAttribute("data-tab") === activeTab,
         );
         const nextIndex = tabs.findIndex(
-          (tab) => tab.getAttribute("data-tab") === nextTab
+          (tab) => tab.getAttribute("data-tab") === nextTab,
         );
         const direction = nextIndex > currentIndex ? 1 : -1;
 
